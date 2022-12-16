@@ -16,17 +16,16 @@ export default class Application extends EventEmitter {
 
     this._beat = new Beat();
 
-    this.emit(Application.events.READY);
-
     this._beat.addEventListener(Beat.events.BIT, () => {
       this._create(lyrics[count]);
       count++;
-      
+
       if (count === lyrics.length) {
         count = 0;
       }
     });
 
+    this.emit(Application.events.READY);
   }
 
   _create(l) {
